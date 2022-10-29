@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
 
                     //get lat long
                     val jsonObjectGeo = jsonObjectResult.getJSONObject("geometry")
-                    val jsonObjectLoc = jsonObjectGeo.getJSONObject("Location")
-                    modelMain.latloc = jsonObjectLoc.getDouble("lat")
-                    modelMain.longloc = jsonObjectLoc.getDouble("lng")
+                    val jsonObjectLoc = jsonObjectGeo.getJSONObject("location")
+                    modelMain.latLoc = jsonObjectLoc.getDouble("lat")
+                    modelMain.longLoc = jsonObjectLoc.getDouble("lng")
                     modelMainList.add(modelMain)
                 }
                 initMarker(modelMainList)
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             overlayItem.add(
                 OverlayItem(
                     modelList[i].strName, modelList[i].strVicinity, GeoPoint(
-                        modelList[i].latloc, modelList[i].longloc
+                        modelList[i].latLoc, modelList[i].longLoc
                     )
                 )
             )
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
             val marker = Marker(mapView)
             marker.icon = resources.getDrawable(R.drawable.ic_baseline_location_on_24)
-            marker.position = GeoPoint(modelList[i].latloc, modelList[i].longloc)
+            marker.position = GeoPoint(modelList[i].latLoc, modelList[i].longLoc)
             marker.relatedObject = info
             marker.infoWindow = CustomInfoWindow(mapView)
             marker.setOnMarkerClickListener{ item, arg1 ->
